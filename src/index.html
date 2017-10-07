@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Acceptance Testing with Nightwatch.js, Cucumber.js and BrowserStack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+      .error,
+      .success {
+        display: none;
+      }
+
+      .error.is-visible,
+      .success.is-visible {
+        display: block;
+      }
+
+      .error {
+        color: red;
+      }
+
+      .success {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Acceptance Testing with Nightwatch.js, Cucumber.js and BrowserStack</h1>
+    <form class="js-newsletter-form">
+      <h2>Newsletter</h2>
+      <input class="qa-newsletter-input js-newsletter-input" placeholder="Your email address">
+      <div class="error js-newsletter-error qa-newsletter-error">Error</div>
+      <div class="success js-newsletter-success qa-newsletter-success">Success</div>
+      <button class="qa-newsletter-submit">Submit</button>
+    </form>
+    <script>
+      const $newsletterForm = document.querySelector('.js-newsletter-form');
+      const $newsletterInput = document.querySelector('.js-newsletter-input');
+      const $newsletterError = document.querySelector('.js-newsletter-error');
+      const $newsletterSuccess = document.querySelector('.js-newsletter-success');
+
+      $newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (/\S+@\S+\.\S+/.test($newsletterInput.value)) {
+          $newsletterError.classList.remove('is-visible');
+          $newsletterSuccess.classList.add('is-visible');
+        } else {
+          $newsletterError.classList.add('is-visible');
+          $newsletterSuccess.classList.remove('is-visible');
+        }
+      });
+    </script>
+  </body>
+</html>
