@@ -1,0 +1,29 @@
+{
+  "name": "acceptance-testing-with-nightwatch-cucumber-and-browserstack",
+  "version": "0.0.1",
+  "description": "This is an example repository created for the following blog article:",
+  "author": "Markus Oberlehner",
+  "homepage": "https://github.com/maoberlehner/acceptance-testing-with-nightwatch-cucumber-and-browserstack",
+  "license": "MIT",
+  "scripts": {
+    "test": "concurrently 'http-server src/ -p 1337 -s' 'nightwatch -c test/conf/default.conf.js' --kill-others"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maoberlehner/acceptance-testing-with-nightwatch-cucumber-and-browserstack"
+  },
+  "bugs": {
+    "url": "https://github.com/maoberlehner/acceptance-testing-with-nightwatch-cucumber-and-browserstack/issues"
+  },
+  "devDependencies": {
+    "chromedriver": "^2.33.0",
+    "concurrently": "^3.5.0",
+    "cucumber": "^3.0.4",
+    "geckodriver": "^1.9.0",
+    "http-server": "^0.10.0",
+    "nightwatch": "^0.9.16",
+    "nightwatch-cucumber": "^8.2.2",
+    "selenium-server": "^3.6.0"
+  }
+}
