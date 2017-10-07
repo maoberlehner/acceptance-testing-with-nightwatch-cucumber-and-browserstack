@@ -22,6 +22,9 @@ defineSupportCode(({ Given, Then }) => {
   Then(/^I see.*? `(.*?)`.*?$/, elementName =>
     client.expect.element(elements[elementName]).to.be.visible);
 
+  Then(/^I don't see.*? `(.*?)`.*?$/, elementName =>
+    client.expect.element(elements[elementName]).to.not.be.visible);
+
   Then(/^I enter.*?\ "(.*?)" into `(.*?)`$/, (value, elementName) =>
     client.setValue(elements[elementName], value));
 
