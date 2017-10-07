@@ -20,7 +20,7 @@ defineSupportCode(({ Given, Then }) => {
       .url(`${url}/${pages[pageName]}`));
 
   Then(/^I see.*? `(.*?)`.*?$/, elementName =>
-    client.assert.visible(elements[elementName]));
+    client.expect.element(elements[elementName]).to.be.visible);
 
   Then(/^I enter.*?\ "(.*?)" into `(.*?)`$/, (value, elementName) =>
     client.setValue(elements[elementName], value));
