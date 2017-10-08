@@ -1,7 +1,6 @@
 {
   "name": "acceptance-testing-with-nightwatch-cucumber-and-browserstack",
   "version": "0.0.1",
-  "description": "This is an example repository created for the following blog article:",
   "author": "Markus Oberlehner",
   "homepage": "https://github.com/maoberlehner/acceptance-testing-with-nightwatch-cucumber-and-browserstack",
   "license": "MIT",
