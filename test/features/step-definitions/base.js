@@ -4,7 +4,7 @@ const { defineSupportCode } = require('cucumber');
 const { url } = require('../../conf/default.conf').test_settings.default.globals;
 
 const pages = {
-  'home page': '',
+  'home page': `${url}/`,
 };
 
 const elements = {
@@ -16,8 +16,7 @@ const elements = {
 
 defineSupportCode(({ Given, Then }) => {
   Given(/^I open the `(.*?)`$/, pageName =>
-    client
-      .url(`${url}/${pages[pageName]}`));
+    client.url(pages[pageName]));
 
   Then(/^I see.*? `(.*?)`.*?$/, elementName =>
     client.expect.element(elements[elementName]).to.be.visible);
