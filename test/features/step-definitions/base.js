@@ -1,32 +1,27 @@
 const { client } = require('nightwatch-cucumber');
 const { defineSupportCode } = require('cucumber');
 
+const { nestedSelector } = require('../../helpers/nested-selector');
+
 const { url } = require('../../conf/default.conf').test_settings.default.globals;
 
 const pages = {
   'home page': `${url}/`,
 };
 
-const elements = {
-  'newsletter input': '.qa-newsletter-input',
-  'submit button': '.qa-newsletter-submit',
-  'error message': '.qa-newsletter-error',
-  'success message': '.qa-newsletter-success',
-};
-
-defineSupportCode(({ Given, Then }) => {
-  Given(/^I open the `(.*?)`$/, pageName =>
+defineSupportCode(({ defineStep }) => {
+  defineStep(/^I (?:browse|open|visit).*? `(.*?)`$/, pageName =>
     client.url(pages[pageName]));
 
-  Then(/^I see.*? `(.*?)`.*?$/, elementName =>
-    client.expect.element(elements[elementName]).to.be.visible);
+  defineStep(/^I (?:find|identify|see|spot).*? (`.*`).*?$/, selectorChain =>
+    client.expect.element(nestedSelector(selectorChain)).to.be.visible);
 
-  Then(/^I don't see.*? `(.*?)`.*?$/, elementName =>
-    client.expect.element(elements[elementName]).to.not.be.visible);
+  defineStep(/^I (?:can|don)'t (?:find|identify|see|spot).*? (`.*`).*?$/, selectorChain =>
+    client.expect.element(nestedSelector(selectorChain)).to.not.be.visible);
 
-  Then(/^I enter.*? "(.*?)" into `(.*?)`$/, (value, elementName) =>
-    client.setValue(elements[elementName], value));
+  defineStep(/^I (?:enter|input|supply|type).*? "(.*?)" in.*? (`.*`)$/, (value, selectorChain) =>
+    client.setValue(nestedSelector(selectorChain), value));
 
-  Then(/^I click.*? `(.*?)`$/, elementName =>
-    client.click(elements[elementName]));
+  defineStep(/^I (?:activate|click).*? (`.*`)$/, selectorChain =>
+    client.click(nestedSelector(selectorChain)));
 });

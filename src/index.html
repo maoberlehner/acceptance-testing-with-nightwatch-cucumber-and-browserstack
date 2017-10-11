@@ -26,30 +26,47 @@
     </style>
   </head>
   <body>
-    <h1>Acceptance Testing with Nightwatch.js, Cucumber.js and BrowserStack</h1>
-    <form class="js-newsletter-form">
-      <h2>Newsletter</h2>
-      <input class="js-newsletter-input qa-newsletter-input" placeholder="Your email address">
-      <div class="error js-newsletter-error qa-newsletter-error">Error</div>
-      <div class="success js-newsletter-success qa-newsletter-success">Success</div>
-      <button class="qa-newsletter-submit">Submit</button>
-    </form>
+    <div data-qa="hero">
+      <h1>Acceptance Testing with Nightwatch.js, Cucumber.js and BrowserStack</h1>
+      <form class="js-newsletter-form" data-qa="newsletter form">
+        <h2>Newsletter 1</h2>
+        <input class="js-newsletter-input" placeholder="Your email address" data-qa="email input">
+        <div class="error js-newsletter-error" data-qa="error message">Error</div>
+        <div class="success js-newsletter-success" data-qa="success message">Success</div>
+        <button data-qa="submit button">Submit</button>
+      </form>
+    </div>
+
+    <p>Some very long text. Lorem Ipsum.</p>
+
+    <footer data-qa="footer">
+      <form class="js-newsletter-form" data-qa="newsletter form">
+        <h2>Newsletter 2</h2>
+        <input class="js-newsletter-input" placeholder="Your email address" data-qa="email input">
+        <div class="error js-newsletter-error" data-qa="error message">Error</div>
+        <div class="success js-newsletter-success" data-qa="success message">Success</div>
+        <button data-qa="submit button">Submit</button>
+      </form>
+    </footer>
     <script>
-      const $newsletterForm = document.querySelector('.js-newsletter-form');
-      const $newsletterInput = document.querySelector('.js-newsletter-input');
-      const $newsletterError = document.querySelector('.js-newsletter-error');
-      const $newsletterSuccess = document.querySelector('.js-newsletter-success');
+      const $newsletterForms = document.querySelectorAll('.js-newsletter-form');
 
-      $newsletterForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+      [].slice.call($newsletterForms).forEach(($newsletterForm) => {
+        const $newsletterInput = $newsletterForm.querySelector('.js-newsletter-input');
+        const $newsletterError = $newsletterForm.querySelector('.js-newsletter-error');
+        const $newsletterSuccess = $newsletterForm.querySelector('.js-newsletter-success');
 
-        if (/\S+@\S+\.\S+/.test($newsletterInput.value)) {
-          $newsletterError.classList.remove('is-visible');
-          $newsletterSuccess.classList.add('is-visible');
-        } else {
-          $newsletterError.classList.add('is-visible');
-          $newsletterSuccess.classList.remove('is-visible');
-        }
+        $newsletterForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          if (/\S+@\S+\.\S+/.test($newsletterInput.value)) {
+            $newsletterError.classList.remove('is-visible');
+            $newsletterSuccess.classList.add('is-visible');
+          } else {
+            $newsletterError.classList.add('is-visible');
+            $newsletterSuccess.classList.remove('is-visible');
+          }
+        });
       });
     </script>
   </body>
