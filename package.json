@@ -5,7 +5,7 @@
   "homepage": "https://github.com/maoberlehner/acceptance-testing-with-nightwatch-cucumber-and-browserstack",
   "license": "MIT",
   "scripts": {
-    "test": "concurrently 'http-server src/ -p 1337 -s' 'nightwatch -c test/conf/default.conf.js' --kill-others"
+    "test": "concurrently 'http-server src/ -p 1337 -s' 'nightwatch -c test/conf/default.conf.js' --success first --kill-others"
   },
   "private": true,
   "repository": {
