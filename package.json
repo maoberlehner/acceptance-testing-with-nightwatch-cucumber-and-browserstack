@@ -5,7 +5,8 @@
   "homepage": "https://github.com/maoberlehner/acceptance-testing-with-nightwatch-cucumber-and-browserstack",
   "license": "MIT",
   "scripts": {
-    "test": "concurrently 'http-server src/ -p 1337 -s' 'nightwatch -c test/conf/default.conf.js' --success first --kill-others"
+    "test": "concurrently 'http-server src/ -p 1337 -s' 'nightwatch -c test/conf/default.conf.js' --success first --kill-others",
+    "test-browserstack": "concurrently 'http-server src/ -p 1337 -s' 'sh test/browserstack.sh' --success first --kill-others"
   },
   "private": true,
   "repository": {
@@ -16,6 +17,7 @@
     "url": "https://github.com/maoberlehner/acceptance-testing-with-nightwatch-cucumber-and-browserstack/issues"
   },
   "devDependencies": {
+    "browserstack-local": "^1.3.0",
     "chromedriver": "^2.33.0",
     "concurrently": "^3.5.0",
     "cucumber": "^3.0.4",
